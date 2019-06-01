@@ -33,8 +33,7 @@ class MovieViewModel(
                     snackLiveData.postValue(randomDelay / ONE_SECOND)
                 }
                 delay(randomDelay)
-                val movies = movies.value
-                movies?.let {
+                movies.value?.let {
                     it.forEach { movie ->
                         movie.ratio = Random.nextInt(MAX_RATIO).toFloat()
                     }

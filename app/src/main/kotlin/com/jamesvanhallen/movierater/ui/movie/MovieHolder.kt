@@ -9,10 +9,10 @@ import kotlinx.android.synthetic.main.holder_movie.*
 
 class MovieHolder(
     override val containerView: View,
-    val onRatioChangeListener: (movie: Movie) -> Unit
+    val onRatioChangeListener: (Movie) -> Unit
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-    lateinit var movie: Movie
+    private lateinit var movie: Movie
 
     init {
         ratioBar.run {

@@ -9,7 +9,7 @@ import com.jamesvanhallen.movierater.model.database.movie.Movie
 import com.jamesvanhallen.movierater.utils.MoviesDiffCallback
 
 class MovieAdapter(
-    private val onRatioChangeListener: (movie: Movie) -> Unit
+    private val onRatioChangeListener: (Movie) -> Unit
 ) : RecyclerView.Adapter<MovieHolder>() {
 
     var items = ArrayList<Movie>()
