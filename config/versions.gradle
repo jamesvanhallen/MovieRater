@@ -5,9 +5,11 @@ ext {
     mockitoVersion = '2.22.0'
     robolectricVersion = '3.0'
     constraintVersion = '1.0.2'
-    archComponentsVersion = '2.0.0'
+    archLifecycleVersion = '2.2.0-alpha01'
+    androidxArchVersion = '2.0.0'
     ktLintVersion = '0.29.0'
     detektVersion = '1.0.2'
     koinVersion = '2.0.1'
     room = '2.1.0-beta01'
+    picasso = '2.5.2'
 }

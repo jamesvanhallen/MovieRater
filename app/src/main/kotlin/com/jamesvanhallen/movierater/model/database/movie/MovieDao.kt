@@ -1,19 +1,20 @@
 package com.jamesvanhallen.movierater.model.database.movie
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-abstract class MovieDao {
+interface MovieDao {
 
     @Insert
-    abstract fun insert(movies: List<Movie>)
+    suspend fun insert(movies: List<Movie>)
 
-    @Query("SELECT * FROM movies")
-    abstract fun fetchAll(): List<Movie>
+    @Query("SELECT * FROM movies ORDER BY " + Movie.RATIO + " DESC")
+    fun fetchAll(): LiveData<List<Movie>>
 
     @Update
-    abstract fun rateMovie(movie: Movie)
+    suspend fun rateMovies(movie: List<Movie>)
 }
