@@ -24,23 +24,35 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? AppCompatActivity)?.let {
-            it.setSupportActionBar(toolbar)
-            it.setTitle(R.string.app_name)
-        }
+        setupActionBar()
+        setupViewModelLiveDates()
+        initRecycler()
+        btnRandom.setOnClickListener { movieViewModel.rateRandomly() }
+    }
+
+    private fun setupViewModelLiveDates() {
         movieViewModel.run {
             movies.observeForever(::setData)
             snackLiveData.observeForever(::showCanceledSnack)
         }
+    }
+
+    private fun setupActionBar() {
+        (activity as? AppCompatActivity)?.let {
+            it.setSupportActionBar(toolbar)
+            it.setTitle(R.string.app_name)
+        }
+    }
+
+    private fun initRecycler() {
         rvMain.run {
             adapter = movieAdapter
             layoutManager = LinearLayoutManager(requireActivity())
         }
-        btnRandom.setOnClickListener { movieViewModel.rateRandomly() }
     }
 
     private fun setData(movies: List<Movie>) {
-        movieAdapter.items = movies as ArrayList<Movie>
+        movieAdapter.items = movies
     }
 
     private fun onRatingChangeListener(movie: Movie) {

@@ -10,7 +10,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.EmptyLogger
 import org.koin.core.logger.Level
 
-class AppDelegate : Application() {
+class MovieRaterApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -20,7 +20,7 @@ class AppDelegate : Application() {
             } else {
                 EmptyLogger()
             }
-            androidContext(this@AppDelegate)
+            androidContext(this@MovieRaterApplication)
             modules(
                 listOf(
                     dataBaseModule, repositoryModule, viewModelModule

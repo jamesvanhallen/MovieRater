@@ -10,16 +10,23 @@ class MovieAdapter(
     private val onRatioChangeListener: (Movie) -> Unit
 ) : RecyclerView.Adapter<MovieHolder>() {
 
-    var items = ArrayList<Movie>()
+    var inflater: LayoutInflater? = null
+
+    var items = listOf<Movie>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.holder_movie, parent, false)
-        return MovieHolder(view, onRatioChangeListener)
+        if (inflater == null) {
+            inflater = LayoutInflater.from(parent.context)
+        }
+        inflater?.let {
+            val view = it.inflate(R.layout.holder_movie, parent, false)
+            return MovieHolder(view, onRatioChangeListener)
+        }
+        throw NullPointerException("inflater is null")
     }
 
     override fun getItemCount() = items.size

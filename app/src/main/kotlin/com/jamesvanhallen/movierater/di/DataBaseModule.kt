@@ -4,7 +4,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.jamesvanhallen.movierater.model.database.MoviesDataBase
-import com.jamesvanhallen.movierater.model.source.MovieRepository
+import com.jamesvanhallen.movierater.model.source.MovieRepositoryImpl
 import org.koin.dsl.module
 
 val dataBaseModule = module {
@@ -16,7 +16,7 @@ val dataBaseModule = module {
         )
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
-                    get<MovieRepository>().setupDefault()
+                    get<MovieRepositoryImpl>().setupDefault()
                 }
             })
             .fallbackToDestructiveMigration()

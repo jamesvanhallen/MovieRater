@@ -1,4 +1,4 @@
-package com.jamesvanhallen.movierater.extansions
+package com.jamesvanhallen.movierater.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
