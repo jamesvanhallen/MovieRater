@@ -21,8 +21,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            testCoverageEnabled false
         }
     }
 
@@ -65,7 +70,7 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
 
     // Picasso
-    implementation "com.squareup.picasso:picasso:$picasso"
+    implementation "com.facebook.fresco:fresco:$frescoVersion"
 }
 
 detekt {

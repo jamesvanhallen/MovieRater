@@ -33,8 +33,8 @@ class MovieFragment : Fragment() {
 
     private fun setupViewModelLiveDates() {
         movieViewModel.run {
-            movies.observe(this@MovieFragment, Observer { setData(it) })
-            snackLiveData.observe(this@MovieFragment, Observer { showCanceledSnack(it) })
+            movies.observe(this@MovieFragment, Observer(::setData))
+            snackLiveData.observe(this@MovieFragment, Observer(::showCanceledSnack))
         }
     }
 
@@ -49,6 +49,7 @@ class MovieFragment : Fragment() {
         rvMain.run {
             adapter = movieAdapter
             layoutManager = LinearLayoutManager(requireActivity())
+            setHasFixedSize(true)
         }
     }
 

@@ -4,16 +4,16 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="140dp"
-    android:layout_margin="4dp"
+    android:layout_margin="@dimen/margin_small"
     android:clickable="false"
     android:elevation="3dp"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardCornerRadius="@dimen/card_view_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/ivCover"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorLabelBackground"
-            android:padding="16dp"
+            android:padding="@dimen/padding_medium"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

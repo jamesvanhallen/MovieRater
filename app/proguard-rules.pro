@@ -31,8 +31,9 @@
 -keep class com.google.gson.** { *; }
 -dontwarn com.google.gson.**
 
-# Picasso
--dontwarn com.squareup.okhttp.**
+# fresco
+-keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
+
 
 #Kotlin Coroutines
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
