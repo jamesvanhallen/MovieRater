@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.jamesvanhallen.movierater.R
@@ -32,8 +33,8 @@ class MovieFragment : Fragment() {
 
     private fun setupViewModelLiveDates() {
         movieViewModel.run {
-            movies.observeForever(::setData)
-            snackLiveData.observeForever(::showCanceledSnack)
+            movies.observe(this@MovieFragment, Observer { setData(it) })
+            snackLiveData.observe(this@MovieFragment, Observer { showCanceledSnack(it) })
         }
     }
 

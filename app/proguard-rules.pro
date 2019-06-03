@@ -19,3 +19,29 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepattributes Signature,Exceptions,InnerClasses,EnclosingMethod,*Annotation*
+-keep public class com.elegion.android.template.** {
+    public static <fields>;
+    public static <methods>;
+    public <methods>;
+    protected <methods>;
+}
+
+# Gson
+-keep class com.google.gson.** { *; }
+-dontwarn com.google.gson.**
+
+# Picasso
+-dontwarn com.squareup.okhttp.**
+
+#Kotlin Coroutines
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
+}
+
+# Room
+-dontwarn android.arch.util.paging.CountedDataSource
+-dontwarn android.arch.persistence.room.paging.LimitOffsetDataSource
+
