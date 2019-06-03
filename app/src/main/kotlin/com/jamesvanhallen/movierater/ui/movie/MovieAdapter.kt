@@ -2,11 +2,9 @@ package com.jamesvanhallen.movierater.ui.movie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jamesvanhallen.movierater.R
 import com.jamesvanhallen.movierater.model.database.movie.Movie
-import com.jamesvanhallen.movierater.utils.MoviesDiffCallback
 
 class MovieAdapter(
     private val onRatioChangeListener: (Movie) -> Unit
@@ -14,14 +12,8 @@ class MovieAdapter(
 
     var items = ArrayList<Movie>()
         set(value) {
-            val oldItems = ArrayList(field)
             field = value
-            if (oldItems.isNotEmpty()) {
-                val diffResult = DiffUtil.calculateDiff(MoviesDiffCallback(oldItems, field))
-                diffResult.dispatchUpdatesTo(this)
-            } else {
-                notifyDataSetChanged()
-            }
+            notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {

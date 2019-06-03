@@ -3,7 +3,7 @@ package com.jamesvanhallen.movierater.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jamesvanhallen.movierater.R
-import com.jamesvanhallen.movierater.extantions.replaceFragment
+import com.jamesvanhallen.movierater.extansions.replaceFragment
 import com.jamesvanhallen.movierater.ui.movie.MovieFragment
 
 class MainActivity : AppCompatActivity() {

@@ -2,10 +2,10 @@ package com.jamesvanhallen.movierater.ui.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jamesvanhallen.movierater.model.database.movie.Movie
 import com.jamesvanhallen.movierater.model.source.MovieRepository
-import com.jamesvanhallen.movierater.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import kotlin.random.Random
 
 class MovieViewModel(
     private val movieRepository: MovieRepository
-) : BaseViewModel() {
+) : ViewModel() {
 
     val movies: LiveData<List<Movie>> = movieRepository.allMovies
     val snackLiveData = MutableLiveData<Long>()
@@ -40,7 +40,6 @@ class MovieViewModel(
                     movieRepository.rateMovies(it)
                 }
             }
-            addCancellableJob(rateJob)
         } else {
             rateJob?.cancel()
             snackLiveData.postValue(0)
