@@ -12,11 +12,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.jamesvanhallen.movierater.R
 import com.jamesvanhallen.movierater.model.database.movie.Movie
 import kotlinx.android.synthetic.main.fmt_movie.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MovieFragment : Fragment() {
 
-    private val movieViewModel: MovieViewModel by inject()
+    private val movieViewModel: MovieViewModel by viewModel()
     private val movieAdapter = MovieAdapter(::onRatingChangeListener)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -39,7 +39,7 @@ class MovieViewModel(
     }
 
     private suspend fun setRandomRatio() {
-        movies.value?.let {
+        movieRepository.allMovies.value?.let {
             it.forEach { movie ->
                 movie.ratio = Random.nextInt(MAX_RATIO).toFloat()
             }

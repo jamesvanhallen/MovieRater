@@ -17,7 +17,7 @@ class MovieRepositoryImpl(private val movieDao: MovieDao) : MovieRepository {
     @WorkerThread
     override suspend fun rateMovies(movies: List<Movie>) = movieDao.rateMovies(movies)
 
-    fun setupDefault(): Job? {
+    override fun setupDefault(): Job? {
         return GlobalScope.launch {
             movieDao.insert(default)
         }
