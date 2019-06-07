@@ -8,7 +8,6 @@ import com.jamesvanhallen.movierater.model.database.movie.Movie
 import com.jamesvanhallen.movierater.model.source.MovieRepository
 import com.jamesvanhallen.movierater.testObserver
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
@@ -16,8 +15,6 @@ import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnit
 
 class MovieViewModelTest {
-
-    private val movieLiveData = MutableLiveData<List<Movie>>()
 
     @get:Rule
     val mockitoRule = MockitoJUnit.rule()
@@ -31,17 +28,10 @@ class MovieViewModelTest {
     @Mock
     lateinit var movieRepository: MovieRepository
 
-    private lateinit var viewModel: MovieViewModel
-
-    @Before
-    @Throws(Exception::class)
-    fun setUp() {
-        `when`(movieRepository.allMovies).thenReturn(movieLiveData)
-        viewModel = MovieViewModel(movieRepository)
-    }
-
     @Test
     fun `Emit empty data`() = coroutinesTestRule.testDispatcher.runBlockingTest {
+        `when`(movieRepository.allMovies).thenReturn(MutableLiveData<List<Movie>>())
+        val viewModel = MovieViewModel(movieRepository)
         val testObserver = viewModel.movies.testObserver()
 
         Truth.assert_()
@@ -51,6 +41,9 @@ class MovieViewModelTest {
 
     @Test
     fun `Emit list of to items`() = coroutinesTestRule.testDispatcher.runBlockingTest {
+        val movieLiveData = MutableLiveData<List<Movie>>()
+        `when`(movieRepository.allMovies).thenReturn(movieLiveData)
+        val viewModel = MovieViewModel(movieRepository)
         val testObserver = viewModel.movies.testObserver()
         val testData = listOf(
             Movie(1, "test1", 0.5f, ""),
@@ -61,20 +54,5 @@ class MovieViewModelTest {
         Truth.assert_()
             .that(testObserver.observedValues)
             .isEqualTo(listOf(testData))
-    }
-
-    @Test
-    fun `Random ratio test`() = coroutinesTestRule.testDispatcher.runBlockingTest {
-        val testObserver = viewModel.movies.testObserver()
-        val testData = listOf(
-            Movie(1, "test1", 0.5f, ""),
-            Movie(2, "test2", 1f, "")
-        )
-        movieLiveData.postValue(testData)
-        viewModel.rateRandomly()
-
-        Truth.assert_()
-            .that(testObserver.observedValues[0])
-            .isNotEqualTo(testData[0])
     }
 }
